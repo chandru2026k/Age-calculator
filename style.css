@@ -1,4 +1,5 @@
 body {
+  
   margin: 0;
   padding: 150px;
   font-family: "Montserrat", sans-serif;
@@ -7,11 +8,11 @@ body {
 
 .container {
   background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  padding: 45px;
-  max-width: 600px;
+  box-shadow: 0 0 10px rgba(1, 1, 1, 1.2);
+  padding: 100px;
+  max-width: 100px;
   margin: 20 auto;
-  border-radius: 20px;
+  border-radius: 40px;
   margin-top: 50px;
   margin-bottom: 50px;
 }
@@ -20,7 +21,7 @@ h1 {
   font-size: 40px;
   text-align: center;
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .form {
@@ -63,4 +64,5 @@ button:hover {
   font-weight: bold;
 
 }
+
 
