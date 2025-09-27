@@ -1,18 +1,19 @@
 body {
+  align-self: auto;
   margin: 0;
   padding: 20px;
   font-family: "Montserrat", sans-serif;
-  background-color: #0f99ac;
+  background-color: #cad315;
 }
 
 .container {
-  background-color: rgb(17, 146, 99);
+  background-color: rgb(13, 153, 172);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
   max-width: 600px;
   margin: 0 auto;
   border-radius: 5px;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 h1 {
@@ -31,6 +32,7 @@ h1 {
 label {
   font-weight: bold;
   margin-bottom: 10px;
+  background-color: beige;
 }
 
 input {
@@ -60,5 +62,4 @@ button:hover {
   margin-top: 40px;
   font-size: 24px;
   font-weight: bold;
-
 }
