@@ -1,5 +1,5 @@
 body {
-  align-self: center;
+  align-self:center;
   margin: 0;
   padding: 20px;
   font-family: "Montserrat", sans-serif;
@@ -64,4 +64,5 @@ button:hover {
   margin-top: 40px;
   font-size: 24px;
   font-weight: bold;
+
 }
