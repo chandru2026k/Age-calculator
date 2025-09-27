@@ -1,7 +1,7 @@
 body {
   
   margin: 0;
-  padding: 150px;
+  padding: 50px;
   font-family: "Montserrat", sans-serif;
   background-color: #f7f7f7;
 }
@@ -9,7 +9,7 @@ body {
 .container {
   background-color: white;
   box-shadow: 0 0 10px rgba(1, 1, 1, 1.2);
-  padding: 100px;
+  padding: 50px;
   max-width: 100px;
   margin: 20 auto;
   border-radius: 40px;
@@ -64,5 +64,6 @@ button:hover {
   font-weight: bold;
 
 }
+
 
 
