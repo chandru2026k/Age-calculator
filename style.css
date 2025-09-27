@@ -12,7 +12,7 @@ body {
   max-width: 600px;
   margin: 0 auto;
   border-radius: 5px;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 h1 {
@@ -60,4 +60,5 @@ button:hover {
   margin-top: 40px;
   font-size: 24px;
   font-weight: bold;
+
 }
