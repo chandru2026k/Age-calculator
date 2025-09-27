@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  padding: 45px;
+  padding: 150px;
   font-family: "Montserrat", sans-serif;
   background-color: #f7f7f7;
 }
@@ -11,7 +11,7 @@ body {
   padding: 45px;
   max-width: 600px;
   margin: 20 auto;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-top: 50px;
   margin-bottom: 50px;
 }
@@ -63,3 +63,4 @@ button:hover {
   font-weight: bold;
 
 }
+
