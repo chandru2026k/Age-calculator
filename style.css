@@ -1,4 +1,7 @@
-/* Base Styles */
+/* Import Montserrat Font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+/* Base Reset */
 * {
   box-sizing: border-box;
 }
@@ -7,85 +10,93 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
-  background-color: #f4f6f8;
+  background: linear-gradient(to right, #dbeafe, #e0f7fa); /* Light gradient background */
   color: #333;
   line-height: 1.6;
 }
 
 /* Container */
 .container {
-  background-color: #fff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  padding: 30px;
+  background: linear-gradient(145deg, #ffffff, #f0f4f8);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+  padding: 35px;
   max-width: 600px;
   margin: 60px auto;
-  border-radius: 10px;
+  border-radius: 12px;
   transition: box-shadow 0.3s ease;
+  border: 1px solid #e0e0e0;
 }
 
 .container:hover {
-  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
 /* Heading */
 h1 {
-  font-size: 32px;
+  font-size: 34px;
   text-align: center;
   margin: 0 0 25px;
-  color: #222;
+  color: #37474f;
+  background: linear-gradient(to right, #007bff, #00bcd4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* Form Styles */
+/* Form */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 16px;
   align-items: center;
 }
 
-/* Labels */
+/* Label */
 label {
   font-weight: 600;
   font-size: 16px;
   align-self: flex-start;
+  color: #333;
 }
 
 /* Input Fields */
 input {
   width: 100%;
   max-width: 320px;
-  padding: 10px 12px;
+  padding: 10px 14px;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 16px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+  background-color: #fdfdfd;
 }
 
 input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+  border-color: #00bcd4;
+  box-shadow: 0 0 6px rgba(0, 188, 212, 0.4);
   outline: none;
+  background-color: #ffffff;
 }
 
 /* Button */
 button {
-  background-color: #007bff;
+  background: linear-gradient(to right, #007bff, #00bcd4);
   color: #fff;
   border: none;
-  padding: 12px 24px;
+  padding: 12px 28px;
   font-size: 16px;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
 }
 
 button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(to right, #0056b3, #0097a7);
   transform: translateY(-2px);
 }
 
 button:active {
-  transform: translateY(0);
+  transform: scale(0.98);
 }
 
 /* Result Text */
@@ -95,12 +106,16 @@ button:active {
   font-weight: 600;
   color: #007bff;
   text-align: center;
+  background-color: #e3f2fd;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border-left: 4px solid #00bcd4;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 480px) {
   .container {
-    padding: 20px;
+    padding: 25px;
     margin: 40px 10px;
   }
 
