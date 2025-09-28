@@ -1,71 +1,115 @@
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  padding: 20px;
-  font-family: "Poppins", sans-serif;
-  background-color:#f0f2f5;
+/* Base Styles */
+* {
+  box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Container */
 .container {
   background-color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  width: 350px;
-  margin: 0 auto;
-  border-radius: 20px;
-  margin-top: 50px;
-  text-align: center;
+  max-width: 600px;
+  margin: 60px auto;
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease;
 }
 
+.container:hover {
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Heading */
 h1 {
-  font-size: 40px;
-  background-color: #333;
+  font-size: 32px;
   text-align: center;
-  margin-top: 0;
-  margin-bottom: 20px;
+  margin: 0 0 25px;
+  color: #222;
 }
 
+/* Form Styles */
 .form {
   display: flex;
   flex-direction: column;
+  gap: 15px;
   align-items: center;
 }
 
+/* Labels */
 label {
-  font-weight: bold;
-  margin-bottom: 10px;
-  background-color: rgb(197, 25, 25);
+  font-weight: 600;
+  font-size: 16px;
+  align-self: flex-start;
 }
 
+/* Input Fields */
 input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+  outline: none;
+}
+
+/* Button */
 button {
   background-color: #007bff;
-  color: white;
+  color: #fff;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  margin-top: 10px;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
   background-color: #0056b3;
+  transform: translateY(-2px);
 }
 
-#result {
-  margin-top: 40px;
-  font-size: 24px;
-  font-weight: bold;
+button:active {
+  transform: translateY(0);
+}
 
+/* Result Text */
+#result {
+  margin-top: 25px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #007bff;
+  text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px;
+    margin: 40px 10px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  input, button {
+    width: 100%;
+    max-width: none;
+  }
 }
