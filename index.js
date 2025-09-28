@@ -8,7 +8,7 @@ canvas.height = window.innerHeight;
 
 function calculateAge() {
   const birthdayValue = birthdayEl.value;
-  if (birthdayValue === "") {
+  if (!birthdayValue) {
     alert("Please enter your birthday");
     return;
   }
@@ -25,7 +25,7 @@ function calculateAge() {
 
   resultEl.innerHTML = `
     🎉 You are <br>
-    <span style="font-size:1.5em; color:#ff007f;">${years}</span> years, 
+    <span style="color:#ff007f; font-size:1.5em;">${years}</span> years, 
     <span style="color:#ffcc00;">${months}</span> months, 
     <span style="color:#00ffcc;">${weeks}</span> weeks, 
     <span style="color:#ff6600;">${days}</span> days, 
@@ -48,7 +48,7 @@ btnEl.addEventListener("click", function (e) {
   calculateAge();
 });
 
-// Fireworks
+// Fireworks particles
 let particles = [];
 function launchFireworks() {
   particles = [];
