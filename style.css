@@ -1,18 +1,16 @@
-/* Background */
+/* Background with gradient animation */
 body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #ff4e50, #fc913a, #f9d423, #ede574, #e1f5c4);
-  background-size: 400% 400%;
+  background: linear-gradient(135deg, #ff6a00, #ee0979, #ff00cc, #3333ff, #00c9ff);
+  background-size: 500% 500%;
   animation: gradientMove 12s ease infinite;
   overflow: hidden;
-  color: #fff;
-  text-align: center;
   height: 100vh;
+  text-align: center;
+  color: white;
 }
-
-/* Animate background */
 @keyframes gradientMove {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -23,61 +21,57 @@ body {
 .container {
   position: relative;
   z-index: 2;
-  padding-top: 60px;
+  padding-top: 80px;
 }
 
 /* Heading */
 .title {
   font-size: 3em;
   font-weight: bold;
-  background: linear-gradient(90deg, #ff00cc, #3333ff, #ffcc00);
+  background: linear-gradient(90deg, #ff00cc, #ffcc00, #00ffcc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: glow 2s ease-in-out infinite alternate;
 }
-
 @keyframes glow {
-  from { text-shadow: 0 0 10px #fff; }
-  to { text-shadow: 0 0 30px #ff00cc, 0 0 50px #3333ff; }
+  from { text-shadow: 0 0 15px #fff; }
+  to { text-shadow: 0 0 30px #ff00cc, 0 0 60px #3333ff; }
 }
 
 /* Subtitle */
 .subtitle {
   font-size: 1.2em;
-  margin-bottom: 20px;
-  color: #222;
+  margin: 10px 0 25px;
   font-weight: 500;
+  color: #ffeedd;
 }
 
 /* Input */
 .input-date {
-  padding: 10px;
-  border-radius: 10px;
+  padding: 12px 18px;
+  border-radius: 12px;
   border: none;
   outline: none;
-  margin-bottom: 20px;
   font-size: 1em;
+  margin-bottom: 20px;
 }
 
 /* Ripple button */
 button {
   position: relative;
   overflow: hidden;
-  padding: 12px 25px;
+  padding: 14px 28px;
   font-size: 1.2em;
   border: none;
   border-radius: 30px;
-  background: #ff00cc;
+  background: #ff007f;
   color: #fff;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
-button:hover {
-  transform: scale(1.05);
-}
-button:focus {
-  outline: none;
-}
+button:hover { transform: scale(1.05); }
+button:focus { outline: none; }
+
 button .ripple-effect {
   position: absolute;
   border-radius: 50%;
@@ -96,16 +90,16 @@ button .ripple-effect {
 .result-box {
   margin-top: 30px;
   padding: 20px;
-  border-radius: 15px;
-  font-size: 1.4em;
+  border-radius: 20px;
+  font-size: 1.3em;
   font-weight: bold;
   background: #00c6ff;
   color: #fff;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  box-shadow: 0 0 25px rgba(0,0,0,0.2);
   animation: pop 0.6s ease;
 }
 @keyframes pop {
-  from { transform: scale(0.8); opacity: 0; }
+  from { transform: scale(0.7); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
 
