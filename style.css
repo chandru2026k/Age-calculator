@@ -1,116 +1,125 @@
-/* Background with gradient animation */
+/* Background Gradient Animation */
 body {
   margin: 0;
-  padding: 0;
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #ff6a00, #ee0979, #ff00cc, #3333ff, #00c9ff);
-  background-size: 500% 500%;
-  animation: gradientMove 12s ease infinite;
-  overflow: hidden;
   height: 100vh;
-  text-align: center;
-  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(270deg, #ff00cc, #333399, #ff6600, #00ccff);
+  background-size: 800% 800%;
+  animation: gradientShift 15s ease infinite;
+  font-family: 'Poppins', sans-serif;
 }
-@keyframes gradientMove {
+
+@keyframes gradientShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Container */
 .container {
-  position: relative;
-  z-index: 2; /* make sure it stays above fireworks */
-  padding-top: 80px;
+  text-align: center;
+  background: rgba(255,255,255,0.1);
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
-/* Heading */
 .title {
-  font-size: 3em;
-  font-weight: bold;
-  background: linear-gradient(90deg, #ff00cc, #ffcc00, #00ffcc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 2.5em;
+  color: #fff;
+  text-shadow: 2px 2px 10px #000;
+  margin-bottom: 10px;
   animation: glow 2s ease-in-out infinite alternate;
 }
+
 @keyframes glow {
-  from { text-shadow: 0 0 15px #fff; }
-  to { text-shadow: 0 0 30px #ff00cc, 0 0 60px #3333ff; }
+  from { text-shadow: 0 0 10px #ff6600, 0 0 20px #ff3399; }
+  to { text-shadow: 0 0 20px #00ffcc, 0 0 30px #ffcc00; }
 }
 
-/* Subtitle */
 .subtitle {
-  font-size: 1.2em;
-  margin: 10px 0 25px;
-  font-weight: 500;
-  color: #ffeedd;
+  color: #eee;
+  margin-bottom: 20px;
 }
 
-/* Input */
-.input-date {
-  padding: 12px 18px;
-  border-radius: 12px;
+.date-input {
+  padding: 12px;
+  border-radius: 10px;
   border: none;
   outline: none;
   font-size: 1em;
   margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-/* Ripple button */
-button {
+/* Ripple Button */
+.ripple-btn {
   position: relative;
   overflow: hidden;
-  padding: 14px 28px;
+  padding: 15px 30px;
   font-size: 1.2em;
-  border: none;
-  border-radius: 30px;
-  background: linear-gradient(45deg, #ff007f, #ffcc00);
   color: #fff;
+  background: linear-gradient(45deg, #ff6600, #ff00cc);
+  border: none;
+  border-radius: 50px;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
 }
-button:hover { transform: scale(1.08); }
-button:focus { outline: none; }
 
-button .ripple-effect {
-  position: absolute;
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple 0.6s linear;
-  background: rgba(255, 255, 255, 0.7);
+.ripple-btn:hover {
+  transform: scale(1.05);
 }
+
+.ripple-btn:active {
+  transform: scale(0.95);
+}
+
+.ripple-btn::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 50%;
+  top: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.ripple-btn:focus::after {
+  animation: ripple 0.6s linear;
+}
+
 @keyframes ripple {
-  to {
-    transform: scale(4);
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.5;
+  }
+  100% {
+    width: 500px;
+    height: 500px;
     opacity: 0;
   }
 }
 
-/* Result box */
-.result-box {
+/* Result Box */
+.result {
   margin-top: 30px;
-  padding: 20px;
-  border-radius: 20px;
-  font-size: 1.3em;
-  font-weight: bold;
-  background: #00c6ff;
+  font-size: 1.5em;
   color: #fff;
-  box-shadow: 0 0 25px rgba(0,0,0,0.2);
-  animation: pop 0.6s ease;
-}
-@keyframes pop {
-  from { transform: scale(0.7); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 15px;
+  background: linear-gradient(45deg, #00ffcc, #ff3399);
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  animation: fadeIn 1s ease-in-out;
 }
 
-/* Fireworks canvas */
-#fireworks {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0; /* behind container */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
+
