@@ -10,25 +10,42 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
-  background: linear-gradient(to right, #dbeafe, #e0f7fa); /* Light gradient background */
+  background: linear-gradient(270deg, #dbeafe, #e0f7fa, #fce4ec, #fff3e0);
+  background-size: 600% 600%;
+  animation: gradientShift 15s ease infinite;
   color: #333;
   line-height: 1.6;
+}
+
+/* Gradient Background Animation */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Container */
 .container {
   background: linear-gradient(145deg, #ffffff, #f0f4f8);
-  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
   padding: 35px;
   max-width: 600px;
   margin: 60px auto;
-  border-radius: 12px;
-  transition: box-shadow 0.3s ease;
+  border-radius: 16px;
   border: 1px solid #e0e0e0;
+  animation: floaty 4s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .container:hover {
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Floating animation */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
 /* Heading */
@@ -36,32 +53,17 @@ h1 {
   font-size: 34px;
   text-align: center;
   margin: 0 0 25px;
-  color: #37474f;
-  background: linear-gradient(to right, #007bff, #00bcd4);
+  background: linear-gradient(to right, #ff4081, #7c4dff, #00bcd4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-button {
-  position: relative;
-  overflow: hidden; /* Needed for ripple */
+  animation: glowText 3s ease-in-out infinite alternate;
 }
 
-button .ripple {
-  position: absolute;
-  border-radius: 50%;
-  transform: scale(0);
-  animation: ripple 0.6s linear;
-  background-color: rgba(255, 255, 255, 0.7);
-  pointer-events: none;
+/* Glow text effect */
+@keyframes glowText {
+  from { text-shadow: 0 0 10px rgba(255,64,129,0.5); }
+  to { text-shadow: 0 0 20px rgba(0,188,212,0.7); }
 }
-
-@keyframes ripple {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
-
 
 /* Form */
 .form {
@@ -76,55 +78,76 @@ label {
   font-weight: 600;
   font-size: 16px;
   align-self: flex-start;
-  color: #333;
+  color: #444;
 }
 
 /* Input Fields */
 input {
   width: 100%;
   max-width: 320px;
-  padding: 10px 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  padding: 12px 16px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
   font-size: 16px;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   background-color: #fdfdfd;
 }
 
 input:focus {
-  border-color: #00bcd4;
-  box-shadow: 0 0 6px rgba(0, 188, 212, 0.4);
+  border-color: transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(to right, #ff4081, #00bcd4) border-box;
+  box-shadow: 0 0 12px rgba(0, 188, 212, 0.4);
   outline: none;
-  background-color: #ffffff;
 }
 
 /* Button */
 button {
-  background: linear-gradient(to right, #007bff, #00bcd4);
+  background: linear-gradient(to right, #ff4081, #7c4dff, #00bcd4);
   color: #fff;
   border: none;
-  padding: 12px 28px;
+  padding: 14px 32px;
   font-size: 16px;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 15px rgba(124, 77, 255, 0.4);
+  position: relative;
+  overflow: hidden;
 }
 
 button:hover {
-  background: linear-gradient(to right, #0056b3, #0097a7);
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(255, 64, 129, 0.5);
 }
 
 button:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
+/* Ripple */
+button .ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  background-color: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Meme text */
 .meme-text {
   margin-top: 15px;
   font-size: 14px;
   text-align: center;
-  color: #555;
+  color: #666;
   font-style: italic;
 }
 
@@ -132,13 +155,24 @@ button:active {
 #result {
   margin-top: 25px;
   font-size: 22px;
-  font-weight: 600;
-  color: #007bff;
+  font-weight: 700;
+  color: #fff;
   text-align: center;
-  background-color: #e3f2fd;
-  padding: 10px 20px;
-  border-radius: 6px;
-  border-left: 4px solid #00bcd4;
+  background: linear-gradient(to right, #ff4081, #00bcd4);
+  padding: 12px 24px;
+  border-radius: 8px;
+  border-left: 4px solid #7c4dff;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideFadeIn 0.8s forwards;
+}
+
+/* Result animation */
+@keyframes slideFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Responsive Adjustments */
@@ -149,7 +183,7 @@ button:active {
   }
 
   h1 {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   input, button {
@@ -157,5 +191,3 @@ button:active {
     max-width: none;
   }
 }
-
-
