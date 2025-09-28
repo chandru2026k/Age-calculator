@@ -3,20 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Magical Age Calculator 🎉</title>
+  <title>Age Calculator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <canvas id="fireworks"></canvas>
-
   <div class="container">
-    <h1 class="title">🌈 Magical Age Calculator 🎂</h1>
-    <p class="subtitle">Discover how much time you’ve lived in style!</p>
+    <h1 class="title">✨ Creative Age Calculator ✨</h1>
+    <p class="subtitle">Find your age in Years, Months, Weeks, Days, Hours!</p>
+    
+    <input type="date" id="birthdate" class="date-input">
+    <button id="calculateBtn" class="ripple-btn">Calculate Age</button>
 
-    <input type="date" id="birthday" class="input-date">
-    <button id="btn" class="ripple">✨ Calculate Age ✨</button>
-
-    <div id="result" class="result-box">Your result will appear here</div>
+    <div id="result" class="result"></div>
   </div>
 
   <script src="script.js"></script>
