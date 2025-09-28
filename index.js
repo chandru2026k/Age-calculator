@@ -1,16 +1,10 @@
 const btnEl = document.getElementById("btn");
 const birthdayEl = document.getElementById("birthday");
 const resultEl = document.getElementById("result");
-const fireworksContainer = document.getElementById("fireworks-container");
-
-btnEl.addEventListener("click", calculateAge);
-
-/* Ripple Effect */
-btnEl.addEventListener("click", function(e) {
-  let rect = btnEl.getBoundingClientRect();
-  btnEl.style.setProperty("--x", `${e.clientX - rect.left - 50}px`);
-  btnEl.style.setProperty("--y", `${e.clientY - rect.top - 50}px`);
-});
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 function calculateAge() {
   const birthdayValue = birthdayEl.value;
@@ -21,95 +15,70 @@ function calculateAge() {
 
   const birthdayDate = new Date(birthdayValue);
   const now = new Date();
+  const diff = now - birthdayDate;
 
-  const lived = getDetailedTimeLived(birthdayDate, now);
+  const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+  const months = years * 12 + (now.getMonth() - birthdayDate.getMonth());
+  const weeks = Math.floor(diff / (1000 * 60 * 60 * 24 * 7));
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(diff / (1000 * 60 * 60));
 
-  resultEl.innerText =
-    `🎉 You have lived 🎉\n\n` +
-    `${lived.years} years\n` +
-    `${lived.months} months\n` +
-    `${lived.weeks} weeks\n` +
-    `${lived.days} days\n` +
-    `${lived.hours} hours 💫`;
+  resultEl.innerHTML = `
+    🎉 You are <br>
+    <span style="font-size:1.5em; color:#ff007f;">${years}</span> years, 
+    <span style="color:#ffcc00;">${months}</span> months, 
+    <span style="color:#00ffcc;">${weeks}</span> weeks, 
+    <span style="color:#ff6600;">${days}</span> days, 
+    <span style="color:#6600ff;">${hours}</span> hours old 🎂
+  `;
 
-  resultEl.classList.add("show");
-
-  // Fireworks
-  startFireworks();
-  setTimeout(stopFireworks, 4000);
+  launchFireworks();
 }
 
-function getDetailedTimeLived(birthdayDate, currentDate) {
-  const diffMs = currentDate - birthdayDate;
+// Ripple effect
+btnEl.addEventListener("click", function (e) {
+  const circle = document.createElement("span");
+  circle.classList.add("ripple-effect");
+  circle.style.left = e.clientX - e.target.offsetLeft + "px";
+  circle.style.top = e.clientY - e.target.offsetTop + "px";
+  this.appendChild(circle);
 
-  const hours = Math.floor(diffMs / (1000 * 60 * 60));
-  const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-  const weeks = Math.floor(days / 7);
-  const months = Math.floor(days / 30.4375);
-  const years = Math.floor(days / 365.25);
+  setTimeout(() => circle.remove(), 600);
 
-  return { years, months, weeks, days, hours };
-}
+  calculateAge();
+});
 
-/* Fireworks Animation */
-let canvas, ctx, particles = [], animationFrame;
-
-function createCanvas() {
-  canvas = document.createElement("canvas");
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  fireworksContainer.appendChild(canvas);
-  ctx = canvas.getContext("2d");
-}
-
-function startFireworks() {
-  if (!canvas) createCanvas();
+// Fireworks
+let particles = [];
+function launchFireworks() {
   particles = [];
-  animate();
-  for (let i = 0; i < 12; i++) {
-    createFirework();
-  }
-}
-
-function stopFireworks() {
-  cancelAnimationFrame(animationFrame);
-  if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
-  fireworksContainer.innerHTML = "";
-  canvas = null;
-}
-
-function createFirework() {
-  const x = Math.random() * canvas.width;
-  const y = Math.random() * canvas.height / 2;
-  const count = 80;
-  for (let i = 0; i < count; i++) {
-    const angle = (i / count) * 2 * Math.PI;
-    const speed = Math.random() * 5 + 2;
+  for (let i = 0; i < 80; i++) {
     particles.push({
-      x: x,
-      y: y,
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed,
-      alpha: 1,
-      color: `hsl(${Math.random() * 360}, 100%, 50%)`
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      angle: Math.random() * 2 * Math.PI,
+      speed: Math.random() * 5 + 2,
+      radius: Math.random() * 2 + 1,
+      color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+      life: 100
     });
   }
 }
 
-function animate() {
-  animationFrame = requestAnimationFrame(animate);
-  ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+function animateFireworks() {
+  requestAnimationFrame(animateFireworks);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  particles.forEach((p, i) => {
-    p.x += p.vx;
-    p.y += p.vy;
-    p.alpha -= 0.01;
+  particles.forEach((p, index) => {
+    p.x += Math.cos(p.angle) * p.speed;
+    p.y += Math.sin(p.angle) * p.speed;
+    p.life -= 1;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
     ctx.fillStyle = p.color;
-    ctx.globalAlpha = p.alpha;
-    ctx.fillRect(p.x, p.y, 3, 3);
+    ctx.fill();
+    if (p.life <= 0) particles.splice(index, 1);
   });
-
-  particles = particles.filter(p => p.alpha > 0);
 }
+animateFireworks();
 
