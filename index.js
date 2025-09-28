@@ -10,47 +10,36 @@ function calculateAge() {
     const birthdayDate = new Date(birthdayValue);
     const now = new Date();
 
-    // Get age in years
-    const age = getAge(birthdayDate, now);
-
-    // Get time lived breakdown
-    const lived = getTimeLived(birthdayDate, now);
+    const lived = getDetailedTimeLived(birthdayDate, now);
 
     resultEl.innerText =
-      `You are ${age} ${age > 1 ? "years" : "year"} old.\n` +
-      `You have lived:\n` +
+      `You have lived:\n\n` +
+      `${lived.years} years\n` +
+      `${lived.months} months\n` +
+      `${lived.weeks} weeks\n` +
       `${lived.days} days\n` +
       `${lived.hours} hours\n` +
       `${lived.minutes} minutes\n` +
-      `${lived.seconds} seconds`;
+      `${lived.seconds} seconds 😮`;
   }
 }
 
-// Calculate age in years
-function getAge(birthdayDate, currentDate) {
-  let age = currentDate.getFullYear() - birthdayDate.getFullYear();
-  const month = currentDate.getMonth() - birthdayDate.getMonth();
-
-  if (
-    month < 0 ||
-    (month === 0 && currentDate.getDate() < birthdayDate.getDate())
-  ) {
-    age--;
-  }
-
-  return age;
-}
-
-// Calculate days, hours, minutes, seconds lived
-function getTimeLived(birthdayDate, currentDate) {
-  const diffMs = currentDate - birthdayDate; // milliseconds difference
+// Detailed breakdown
+function getDetailedTimeLived(birthdayDate, currentDate) {
+  const diffMs = currentDate - birthdayDate; // difference in ms
 
   const seconds = Math.floor(diffMs / 1000);
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
+  const weeks = Math.floor(days / 7);
+  const months = Math.floor(days / 30.4375); // avg month length
+  const years = Math.floor(days / 365.25);   // avg year length
 
   return {
+    years,
+    months,
+    weeks,
     days,
     hours,
     minutes,
