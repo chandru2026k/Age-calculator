@@ -1,4 +1,4 @@
-/* Background Gradient Animation */
+/* Animated Gradient Background */
 body {
   margin: 0;
   height: 100vh;
@@ -19,17 +19,15 @@ body {
 
 .container {
   text-align: center;
-  background: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.8);
   padding: 40px;
   border-radius: 20px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
 }
 
 .title {
   font-size: 2.5em;
-  color: #444;
-  text-shadow: 1px 1px 8px rgba(255,255,255,0.6);
   margin-bottom: 10px;
   animation: glow 2s ease-in-out infinite alternate;
 }
@@ -40,7 +38,7 @@ body {
 }
 
 .subtitle {
-  color: #555;
+  color: #444;
   margin-bottom: 20px;
 }
 
@@ -75,32 +73,18 @@ body {
   transform: scale(0.95);
 }
 
-.ripple-btn::after {
-  content: "";
+.ripple {
   position: absolute;
-  width: 0;
-  height: 0;
-  left: 50%;
-  top: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 100%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: rippleEffect 0.6s linear;
+  background: rgba(255,255,255,0.6);
+  pointer-events: none;
 }
 
-.ripple-btn:focus::after {
-  animation: ripple 0.6s linear;
-}
-
-@keyframes ripple {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 0.5;
-  }
-  100% {
-    width: 500px;
-    height: 500px;
+@keyframes rippleEffect {
+  to {
+    transform: scale(4);
     opacity: 0;
   }
 }
@@ -108,8 +92,7 @@ body {
 /* Result Box */
 .result {
   margin-top: 30px;
-  font-size: 1.5em;
-  color: #333;
+  font-size: 1.3em;
   font-weight: bold;
   padding: 20px;
   border-radius: 15px;
@@ -122,5 +105,3 @@ body {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-
